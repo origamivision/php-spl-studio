@@ -18,9 +18,9 @@ composer require origamivision/stationplaylist
 ## Usage
 
 ``` php
-use Origamivision\Stationplaylist;
+use Origamivision\Stationplaylist\Client;
 
-$spl = new Stationplaylist('0.0.0.0', 0);
+$spl = new Client('0.0.0.0', 0);
 
 // List all available songs
 $results = $spl->search('*');
