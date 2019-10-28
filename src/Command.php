@@ -53,7 +53,7 @@ class Command
 		$this->port = $port;
 		$this->timeout = !$timeout ?? ini_get("default_socket_timeout");
 		if (!$this->fp = @fsockopen($this->hostname, $this->port, $this->errno, $this->errstr, $this->timeout)) {
-            throw new ConnectionFailedException("Unable to connect: {$this->errstr} ('.$this->errno.')");
+            throw new ConnectionFailedException("Unable to connect: {$this->errstr} ($this->errno)");
         }
         stream_set_timeout($this->fp, $this->stream_timeout_seconds, $this->stream_timeout_microseconds);
 	}
