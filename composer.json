@@ -1,0 +1,42 @@
+{
+    "name": "origamivision/stationplaylist",
+    "description": "A PHP library for StationPlaylist Studio",
+    "keywords": [
+        "origamivision",
+        "stationplaylist"
+    ],
+    "homepage": "https://github.com/origamivision/stationplaylist",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ken Verhaegen",
+            "email": "ken@origami.vision",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Origamivision\\Stationplaylist\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Origamivision\\Stationplaylist\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
