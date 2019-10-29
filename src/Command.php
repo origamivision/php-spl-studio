@@ -58,9 +58,9 @@ class Command
         stream_set_timeout($this->fp, $this->stream_timeout_seconds, $this->stream_timeout_microseconds);
 	}
 
-	static function cmd($data)
+	function cmd($data)
 	{
-		fputs($this->fp, $out);
+		fputs($this->fp, $data);
 		return $this->_read();
 	}
 
@@ -68,7 +68,7 @@ class Command
 	{
 		$r = [];
 		while (!feof($this->fp)) {
-			$r[] = fgets($fp, 128);
+			$r[] = fgets($this->fp, 128);
 		}
 		return $r;
 	}

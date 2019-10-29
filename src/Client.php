@@ -32,12 +32,12 @@ class Client
 
 	function search(String $lookup = '*')
 	{
-		return $this->query('Search='.$lookup);
+		return $this->command('Search='.$lookup);
 	}
 
 	function command(String $query = '')
 	{
-		return $this->command::cmd($query);
+		return $this->command->cmd($query);
 	}
 
 }
