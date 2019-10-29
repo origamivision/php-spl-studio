@@ -10,7 +10,7 @@ class Command
 	/**
 	 * @var resource
 	 */
-	protected $fp;
+	protected $handle;
 
 	/**
 	 * @var string
@@ -52,30 +52,36 @@ class Command
 		$this->hostname = $hostname;
 		$this->port = $port;
 		$this->timeout = !$timeout ?? ini_get("default_socket_timeout");
-		if (!$this->fp = @fsockopen($this->hostname, $this->port, $this->errno, $this->errstr, $this->timeout)) {
+		if (!$this->handle = @fsockopen($this->hostname, $this->port, $this->errno, $this->errstr, $this->timeout)) {
             throw new ConnectionFailedException("Unable to connect: {$this->errstr} ($this->errno)");
         }
-        stream_set_timeout($this->fp, $this->stream_timeout_seconds, $this->stream_timeout_microseconds);
+        stream_set_timeout($this->handle, $this->stream_timeout_seconds, $this->stream_timeout_microseconds);
 	}
 
 	function cmd($data)
 	{
-		fputs($this->fp, $data);
+		$data = rawurldecode($data);
+		if (get_magic_quotes_gpc()) {
+			$data = stripslashes($data);
+		}
+		fwrite($this->handle, $data."\r\n");
 		return $this->_read();
 	}
 
 	private function _read()
 	{
 		$r = [];
-		while (!feof($this->fp)) {
-			$r[] = fgets($this->fp, 128);
+		while (($buffer = fgets($this->handle, 4096)) !== false) {
+			$r[] = trim($buffer);
+			// $r[] = ';)';
+			// echo $buffer;
 		}
 		return $r;
 	}
 
 	function __destruct()
 	{
-        fclose($this->fp);
+        fclose($this->handle);
     }
 
 }
