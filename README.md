@@ -5,7 +5,9 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/origamivision/stationplaylist.svg?style=flat-square)](https://scrutinizer-ci.com/g/origamivision/stationplaylist)
 [![Total Downloads](https://img.shields.io/packagist/dt/origamivision/stationplaylist.svg?style=flat-square)](https://packagist.org/packages/origamivision/stationplaylist)
 
-This is a PHP library to make it able to connect with StationPlaylist Studio remotely. It can be used for loading all available songs in the song library and send song requests to Studio.
+This is a PHP library to connect with StationPlaylist Studio remotely. It can be used for loading all available songs in the song library and send song requests to Studio.
+
+Note: development in progress. Not for production.
 
 ## Installation
 
